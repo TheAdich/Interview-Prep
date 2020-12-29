@@ -1,0 +1,86 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+/*
+  Given a binary tree, print the top view of the tree
+*/
+
+    //        8
+    //      /.  \
+    //     1.    2
+    //    / \.  / \
+    //   7   9. 3. 4
+    //              \
+    //               6
+    
+    // 7 1 8 2 4 6
+    
+    // Queue: 8
+    // POP
+    // Queue: 1 2
+    // //After insertin all children
+    // Queue: 7 9 3 4
+    
+    // vector<vector<int>> v = {1,2}
+    //                         {7,4}
+    //                         {-1,6}
+    
+class Node{
+  public:
+  int data;
+  Node* left;
+  Node* right;
+  
+  Node(int data)
+  {
+    this->data = data;
+    left = NULL;
+    right = NULL;
+  }
+};
+Node* build_preorder(vector<int> v, int &i, int n)
+{
+  if(i > n-1)
+   return NULL;
+   
+	if (v[i++] == -1)
+		return NULL;
+
+	Node* root = new Node(v[i++]);
+
+	root->left = build_preorder(v,i,n);
+	root->right = build_preorder(v,i,n);
+
+	return root;
+}
+
+void preorder_print(Node* root)
+{
+	if (root == NULL)
+		return;
+
+	cout << root->data << " ";
+	preorder_print(root->left);
+	preorder_print(root->right);
+}
+
+//            8
+    //      /.  \
+    //     1.    2
+    //    / \.  / \
+    //   7   9. 3. 4
+    //              \
+    //               6
+
+int main() {
+	vector<int> v = {8,1,7,-1,-1,9,-1,-1,2,3,-1,-1,4,-1,6,-1,-1};
+  int i = 0;
+  Node* root = build_preorder(v,i,v.size()-1);
+  preorder_print(root);
+}
+
+
+
+// Your last Java code is saved below:
+
