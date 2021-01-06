@@ -74,7 +74,7 @@ vector<char> infix_to_postfix(string str, map<char, int> priority, map<char, str
 
 int main()
 {
-	//Hi testing Sublime merge
+
 	char str[1000];
 	cin.getline(str, 1000);
 

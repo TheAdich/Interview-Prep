@@ -52,11 +52,21 @@ using namespace std;
 #define deb(x)          cout << #x << "=" << x << endl
 #define deb2(x, y)      cout << #x << "=" << x << "," << #y << "=" << y << endl
 
-class Pair {
-public:
-	int v;
-	string psf;
-};
+bool bipartite(vector<vector<int>> graph, vector<int>& color, int cur) {
+
+	for (auto nbr : graph[cur]) {
+		if (color[nbr] == 0) {
+			color[nbr] = 3 - color[cur];
+
+			bool sub_bipartite = bipartite(graph, color, nbr);
+			if (!sub_bipartite)
+				return false;
+		}
+		else if (color[nbr] == color[cur])
+			return false;
+	}
+	return true;
+}
 
 int main()
 {
@@ -72,35 +82,15 @@ int main()
 		graph[v2].push_back(v1);
 	}
 
-	int src;
-	cin >> src;
+	vector<int> color(vertices);
 
-	//BFS
-	vector<bool> visited(vertices);
-	queue<Pair> q;
-
-	q.push({src, to_string(src)});
-
-	while (!q.empty()) {
-		// Remove
-		// Mark*
-		// Work
-		// Add*
-
-		Pair rem = q.front();
-		q.pop();
-
-		if (visited[rem.v] == true)
-			continue;
-
-		visited[rem.v] = true;
-
-		cout << rem.v << "@" << rem.psf << endl;
-
-		for (auto nbr : graph[rem.v]) {
-			if (visited[nbr] == false)
-				q.push({nbr, rem.psf + to_string(nbr)});
+	int isBipartite = true;
+	for (int i = 0; i < vertices; i++) {
+		if (color[i] == 0) {
+			color[i] = 1;
+			isBipartite = isBipartite && bipartite(graph, color, i);
 		}
 	}
 
+	isBipartite ? cout << "true" : cout << "false";
 }

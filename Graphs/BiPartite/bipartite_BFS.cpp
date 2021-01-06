@@ -58,6 +58,36 @@ public:
 	string psf;
 };
 
+bool bipartite(vector<vector<int>> graph, vector<int>& color, int cur) {
+	queue<int> q;
+	q.push(cur);
+
+	color[cur] = 1;
+
+	while (!q.empty()) {
+		//Remove
+		//Mark*
+		//Work
+		//Add*
+
+		int parent = q.front();
+		q.pop();
+
+		for (auto nbr : graph[parent]) {
+			// If neighbour not coloured
+			if (color[nbr] == 0) {
+				//Color it Opposite of parent;
+				color[nbr] = 3 - color[parent];
+				q.push(nbr);
+			} else if (color[nbr] == color[parent]) {
+				return false;
+			}
+		}
+	}
+
+	return true;
+}
+
 int main()
 {
 	int vertices, edges;
@@ -72,35 +102,14 @@ int main()
 		graph[v2].push_back(v1);
 	}
 
-	int src;
-	cin >> src;
+	vector<int> color(vertices);
 
-	//BFS
-	vector<bool> visited(vertices);
-	queue<Pair> q;
-
-	q.push({src, to_string(src)});
-
-	while (!q.empty()) {
-		// Remove
-		// Mark*
-		// Work
-		// Add*
-
-		Pair rem = q.front();
-		q.pop();
-
-		if (visited[rem.v] == true)
-			continue;
-
-		visited[rem.v] = true;
-
-		cout << rem.v << "@" << rem.psf << endl;
-
-		for (auto nbr : graph[rem.v]) {
-			if (visited[nbr] == false)
-				q.push({nbr, rem.psf + to_string(nbr)});
+	int isBipartite = false;
+	for (int i = 0; i < vertices; i++) {
+		if (color[i] == 0) {
+			isBipartite = isBipartite && bipartite(graph, color, i);
 		}
 	}
 
+	isBipartite ? cout << "true" : cout << "false";
 }

@@ -28,67 +28,46 @@ using namespace std;
 template <typename T>
 ostream& operator<<(ostream& os, const vector<T>& v)
 {
-	for (int i = 0; i < v.size(); ++i) {
-		os << v[i];
-		if (i != v.size() - 1)
-			os << " ";
-	}
-	return os;
+   for (int i = 0; i < v.size(); ++i) {
+      os << v[i];
+      if (i != v.size() - 1)
+         os << " ";
+   }
+   return os;
 }
 
-bool bfsCycleDetection(vector<vector<int>> graph, vector<int> &visited, int cur) {
-	queue<int> q;
-	q.push(cur);
+int ROW, COL;
 
-	while (!q.empty()) {
-		//Remove
-		//Mark*
-		//Work
-		//Add*
+void islands(vector<vector<int>> &graph, int x, int y) {
+   if (x < 0 || x >= ROW || y < 0 || y >= COL || graph[x][y] == 1 || graph[x][y] == 2)
+      return;
 
-		int rem = q.front();
-		q.pop();
+   graph[x][y] = 2;
 
-		if (visited[rem] == true)
-			return true;
-
-		visited[rem] = true;
-
-		for (auto nbr : graph[rem]) {
-			if (visited[nbr] == false) {
-				q.push(nbr);
-			}
-		}
-	}
-
-	return false;
+   islands(graph, x - 1, y);
+   islands(graph, x, y + 1);
+   islands(graph, x + 1, y);
+   islands(graph, x, y - 1);
 }
 
 int main()
 {
-	int vertices, edges;
-	cin >> vertices >> edges;
+   cin >> ROW >> COL;
 
-	vector<vector<int>> graph(vertices);
+   vector<vector<int>> graph(ROW, vector<int>(COL));
 
-	for (int i = 0; i < edges; i++) {
-		int v1, v2, wt;
-		cin >> v1 >> v2 >> wt;
+   for (int i = 0; i < ROW; i++)
+      for (int j = 0; j < COL; j++)
+         cin >> graph[i][j];
 
-		graph[v1].push_back(v2);
-		graph[v2].push_back(v1);
-	}
+   int count = 0;
 
-	vector<int> visited(vertices);
-	bool found = false;
-	for (int v = 0; v < vertices; v++) {
-		if (visited[v] == false) {
-			if (bfsCycleDetection(graph, visited, v)) {
-				found = true;
-				break;
-			}
-		}
-	}
+   for (int i = 0; i < ROW; i++)
+      for (int j = 0; j < COL; j++)
+         if (graph[i][j] == 0) {
+            ++count;
+            islands(graph, i, j);
+         }
 
-	found ? cout << "true" : cout << "false";
+   cout << count << endl;
 }
