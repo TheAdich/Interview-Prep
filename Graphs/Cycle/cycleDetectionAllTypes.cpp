@@ -172,6 +172,7 @@ bool directedBFS(int V, vector<int> adj[]) {
 }
 
 //Colorful DFS
+// My implementation. Did not see any editorial
 /**
 Color 0 = Not visited
 Color 1 = Visited BUT not in Path
