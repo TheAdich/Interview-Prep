@@ -1,0 +1,8 @@
+https://zhuhan0.blogspot.com/2017/03/leetcode-253-meeting-rooms-ii.html
+
+https://www.lintcode.com/problem/meeting-rooms-ii/description
+
+435 Non-overlapping Intervals <- very similar😈
+56 Merge Intervals <- very similar😈
+252 Meeting Rooms
+253 Meeting Rooms II

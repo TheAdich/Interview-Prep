@@ -51,18 +51,18 @@ void floydWarshall(int n, vector<vector<int>> graph) {
 int main()
 {
 	//Adjacency Matrix with Weights
-	int vertices;
-	cin >> vertices;
+	// int vertices;
+	// cin >> vertices;
 
-	vector<vector<int>> graph(vertices, vector<int>(vertices));
+	// vector<vector<int>> graph(vertices, vector<int>(vertices));
 
-	for (int row = 0; row < vertices; row++)
-		for (int col = 0; col < vertices; col++) {
-			string s;
-			cin >> s;
-			if (s[0] == 'I')
-				graph[row][col] = 10000000;
-			else
-				graph[row][col] = stoi(s);
-		}
+	// for (int row = 0; row < vertices; row++)
+	// 	for (int col = 0; col < vertices; col++) {
+	// 		string s;
+	// 		cin >> s;
+	// 		if (s[0] == 'I')
+	// 			graph[row][col] = 10000000;
+	// 		else
+	// 			graph[row][col] = stoi(s);
+	// 	}
 }

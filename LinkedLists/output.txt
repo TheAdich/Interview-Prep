@@ -1,1 +1,57 @@
-4 -> 1 -> 3 -> 
+List empty
+
+List Front: g
+
+List Front: g
+
+List Front: g
+
+List Front: g
+
+List Front: g
+
+List Front: g
+
+List Front: g
+
+List Front: g
+
+List Front: k
+
+List Front: k
+
+List Front: k
+
+List Front: s
+
+List Front: f
+
+List Front: f
+
+List Front: f
+
+List Front: f
+
+List Front: f
+
+List Front: f
+
+List Front: f
+
+List Front: f
+
+List Front: f
+
+List Front: f
+
+List Front: f
+
+List Front: f
+
+List Front: f
+
+List Front: o
+
+List Front: r
+
+List Front: a
