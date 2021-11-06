@@ -122,12 +122,13 @@ double medianArrays(int a[], int b[], int n)
       return medianArrays(a + n / 2,
                           b, n - n / 2);
    }
+}
 
-   if (n % 2 == 0)
-      return medianArrays(b + n / 2 - 1,
-                          a, n - n / 2 + 1);
-   return medianArrays(b + n / 2,
-                       a, n - n / 2);
+if (n % 2 == 0)
+   return medianArrays(b + n / 2 - 1,
+                       a, n - n / 2 + 1);
+return medianArrays(b + n / 2,
+                    a, n - n / 2);
 }
 
 pair<int, int> find_max_min(int *arr, int i, int j)
